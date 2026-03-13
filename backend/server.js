@@ -3,6 +3,8 @@
  "./routes/cart.route.js"; 
  import couponRoutes from "./routes/coupon.route.js";
   import productRoutes from "./routes/product.route.js";
+  import paymentRoutes from "./routes/payment.route.js";
+  import analyticsRoutes from "./routes/analytics.route.js";
  import cookieParser from  "cookie-parser";
 import dotenv from "dotenv";
 import authRoutes from "./routes/auth.route.js";
@@ -25,6 +27,8 @@ app.use("/api/auth", authRoutes);
 app.use("/api/products",productRoutes);
 app.use("api/cart",cartRoutes);
 app.use("/api/coupons",couponRoutes);
+app.use("/api/payment",paymentRoutes);
+app.use("/api/analytics",analyticsRoutes);
 
 
 // Use the PORT variable here so it's dynamic
