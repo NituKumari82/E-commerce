@@ -1,4 +1,3 @@
-// eslint-disable-next-line no-unused-vars`r`n// eslint-disable-next-line no-unused-vars
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
 import axios from "../lib/axios";
@@ -32,7 +31,7 @@ const AnalyticsTab = () => {
 	}, []);
 
 	if (isLoading) {
-		return <div>Loading...</div>;
+		return <div className="text-white">Loading...</div>;
 	}
 
 	return (
@@ -75,7 +74,10 @@ const AnalyticsTab = () => {
 						<XAxis dataKey='name' stroke='#D1D5DB' />
 						<YAxis yAxisId='left' stroke='#D1D5DB' />
 						<YAxis yAxisId='right' orientation='right' stroke='#D1D5DB' />
-						<Tooltip />
+						<Tooltip 
+							contentStyle={{ backgroundColor: "#1F2937", borderColor: "#374151" }} 
+							itemStyle={{ color: "#E5E7EB" }}
+						/>
 						<Legend />
 						<Line
 							yAxisId='left'
@@ -99,9 +101,8 @@ const AnalyticsTab = () => {
 		</div>
 	);
 };
-export default AnalyticsTab;
 
-// eslint-disable-next-line no-unused-vars`r`nconst AnalyticsCard = ({ title, value, icon: Icon, color }) => (
+const AnalyticsCard = ({ title, value, icon: Icon, color }) => (
 	<motion.div
 		className={`bg-gray-800 rounded-lg p-6 shadow-lg overflow-hidden relative ${color}`}
 		initial={{ opacity: 0, y: 20 }}
@@ -120,3 +121,5 @@ export default AnalyticsTab;
 		</div>
 	</motion.div>
 );
+
+export default AnalyticsTab;
