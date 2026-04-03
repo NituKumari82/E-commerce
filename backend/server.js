@@ -25,10 +25,22 @@ const PORT = process.env.PORT || 5000;
 const __dirname = path.resolve();
 
 // 2. Added CORS configuration (Must be before routes)
+const allowedOrigins = [
+	"http://localhost:5173",
+	"http://localhost:3000",
+	process.env.CLIENT_URL || "http://localhost:5173"
+];
+
 app.use(
 	cors({
-		origin: "http://localhost:5173", // Your frontend URL
-		credentials: true, // Allows cookies/sessions
+		origin: function(origin, callback) {
+			if (!origin || allowedOrigins.includes(origin)) {
+				callback(null, true);
+			} else {
+				callback(new Error("Not allowed by CORS"));
+			}
+		},
+		credentials: true,
 	})
 );
 
