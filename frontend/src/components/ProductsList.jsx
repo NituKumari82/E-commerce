@@ -1,3 +1,4 @@
+// eslint-disable-next-line no-unused-vars`r`n// eslint-disable-next-line no-unused-vars
 import { motion } from "framer-motion";
 import { Trash, Star } from "lucide-react";
 import { useProductStore } from "../stores/useProductStore";

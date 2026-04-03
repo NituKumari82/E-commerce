@@ -1,3 +1,4 @@
+// eslint-disable-next-line no-unused-vars`r`n// eslint-disable-next-line no-unused-vars
 import { motion } from "framer-motion";
 import { useCartStore } from "../stores/useCartStore";
 import { Link } from "react-router-dom";

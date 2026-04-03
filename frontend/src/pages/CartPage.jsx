@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { useCartStore } from "../stores/useCartStore";
+// eslint-disable-next-line no-unused-vars
 import { motion } from "framer-motion";
 import { ShoppingCart } from "lucide-react";
 import CartItem from "../components/CartItem";

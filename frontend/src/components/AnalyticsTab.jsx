@@ -1,3 +1,4 @@
+// eslint-disable-next-line no-unused-vars`r`n// eslint-disable-next-line no-unused-vars
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
 import axios from "../lib/axios";
@@ -100,7 +101,7 @@ const AnalyticsTab = () => {
 };
 export default AnalyticsTab;
 
-const AnalyticsCard = ({ title, value, icon: Icon, color }) => (
+// eslint-disable-next-line no-unused-vars`r`nconst AnalyticsCard = ({ title, value, icon: Icon, color }) => (
 	<motion.div
 		className={`bg-gray-800 rounded-lg p-6 shadow-lg overflow-hidden relative ${color}`}
 		initial={{ opacity: 0, y: 20 }}

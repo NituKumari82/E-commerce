@@ -1,3 +1,4 @@
+// eslint-disable-next-line no-unused-vars`r`n// eslint-disable-next-line no-unused-vars
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
 import { useCartStore } from "../stores/useCartStore";
@@ -11,6 +12,8 @@ const GiftCouponCard = () => {
 	}, [getMyCoupon]);
 
 	useEffect(() => {
+		// useEffect needs to propagate coupon code when coupon updates
+		// eslint-disable-next-line react-hooks/set-state-in-effect
 		if (coupon) setUserInputCode(coupon.code);
 	}, [coupon]);
 

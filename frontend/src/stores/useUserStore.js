@@ -3,7 +3,7 @@ import { create } from "zustand";
 import axios from "../lib/axios"; 
 import { toast } from "react-hot-toast";
 
-export const useUserStore = create((set, get) => ({
+export const useUserStore = create((set) => ({
 	user: null,
 	loading: false,
 	checkingAuth: true,
@@ -70,7 +70,7 @@ export const useUserStore = create((set, get) => ({
   try {
     const response = await axios.get("/auth/profile");
     set({ user: response.data, checkingAuth: false });
-  } catch (error) {
+  } catch {
     set({ checkingAuth: false, user: null });
   }
 },
