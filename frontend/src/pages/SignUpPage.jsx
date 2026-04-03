@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { UserPlus, Mail, Lock, User, ArrowRight, Loader } from "lucide-react";
 import { motion } from "framer-motion";
 import { useUserStore } from "../stores/useUserStore";
@@ -13,11 +13,22 @@ const SignUpPage = () => {
 	});
 
 	const { signup, loading } = useUserStore();
+	const navigate = useNavigate();
 
-	const handleSubmit = (e) => {
+	const handleSubmit = async (e) => {
 		e.preventDefault();
-		signup(formData);
+		const isSuccess = await signup(formData);
+		if (isSuccess) {
+			navigate("/");
+		}
 	};
+
+	const isSubmitDisabled =
+		loading ||
+		!formData.name.trim() ||
+		!formData.email.trim() ||
+		!formData.password ||
+		!formData.confirmPassword;
 
 	return (
 		<div className='flex flex-col justify-center py-12 sm:px-6 lg:px-8'>
@@ -130,7 +141,7 @@ const SignUpPage = () => {
 							rounded-md shadow-sm text-sm font-medium text-white bg-emerald-600
 							 hover:bg-emerald-700 focus:outline-none focus:ring-2 focus:ring-offset-2
 							  focus:ring-emerald-500 transition duration-150 ease-in-out disabled:opacity-50'
-							disabled={loading}
+							disabled={isSubmitDisabled}
 						>
 							{loading ? (
 								<>

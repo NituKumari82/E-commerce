@@ -8,33 +8,51 @@ export const useUserStore = create((set, get) => ({
 	loading: false,
 	checkingAuth: true,
 
-	signup: async ({ name, email, password, confirmPassword }) => {
+	signup: async (payload) => {
+		const { name, email, password, confirmPassword } = payload;
 		set({ loading: true });
+
+		if (!name || !email || !password || !confirmPassword) {
+			set({ loading: false });
+			toast.error("All fields are required");
+			return false;
+		}
 
 		if (password !== confirmPassword) {
 			set({ loading: false });
-			return toast.error("Passwords do not match");
+			toast.error("Passwords do not match");
+			return false;
 		}
 
 		try {
 			const res = await axios.post("/auth/signup", { name, email, password });
 			set({ user: res.data, loading: false });
+			toast.success("Signup successful!");
+			return true;
 		} catch (error) {
 			set({ loading: false });
-			// FIX: Added optional chaining ?. to prevent crash on 500 errors
 			toast.error(error.response?.data?.message || "An error occurred during signup");
+			return false;
 		}
 	},
 
 	login: async (email, password) => {
 		set({ loading: true });
+		if (!email.trim() || !password) {
+			set({ loading: false });
+			toast.error("Email and password are required");
+			return false;
+		}
+
 		try {
 			const res = await axios.post("/auth/login", { email, password });
 			set({ user: res.data, loading: false });
+			toast.success("Login successful!");
+			return true;
 		} catch (error) {
 			set({ loading: false });
-			// FIX: Added optional chaining ?.
 			toast.error(error.response?.data?.message || "Invalid credentials or server error");
+			return false;
 		}
 	},
 
